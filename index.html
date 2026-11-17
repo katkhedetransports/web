@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Katkhede Transport</title>
+<meta name="description" content="Employee transportation and goods transportation from Pimpri, Pune. 320+ vehicles, 24x7 dispatch and support desk.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a road-sign page. Navy asphalt, amber centre-line dashes as the only ornament, and a trip slip as the signature enquiry tool. */
+:root{
+  --navy:#0F1E3D;
+  --navy-2:#16295A;
+  --amber:#F28C28;
+  --amber-ink:#B45309;
+  --paper:#F4F7FB;
+  --white:#FFFFFF;
+  --body:#3F4B60;
+  --line:#D5DDEA;
+  --soft:#C9D4E8;
+  --display:'Poppins','Segoe UI',Arial,sans-serif;
+  --text:'Public Sans','Segoe UI',Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--body);font-family:var(--text);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-family:var(--display);color:var(--navy);text-wrap:balance}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.eyebrow{font-family:var(--display);font-weight:600;font-size:.8125rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-ink)}
+.on-dark .eyebrow{color:var(--amber)}
+
+/* header */
+.top{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;text-decoration:none}
+.brand svg{height:44px;width:auto;display:block}
+.nav{display:flex;align-items:center;gap:28px}
+.nav a.link{font-weight:600;font-size:.95rem;text-decoration:none;color:var(--navy)}
+.nav a.link:hover{color:var(--amber-ink)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;font-size:.95rem;text-decoration:none;padding:12px 22px;border-radius:999px;border:2px solid var(--navy);color:var(--navy);background:transparent;cursor:pointer;transition:background .15s,color .15s}
+.btn:hover{background:var(--navy);color:var(--white)}
+.btn.solid{background:var(--amber);border-color:var(--amber);color:var(--navy)}
+.btn.solid:hover{background:var(--white);border-color:var(--white);color:var(--navy)}
+.btn.ghost-light{border-color:var(--soft);color:var(--white)}
+.btn.ghost-light:hover{background:var(--white);color:var(--navy);border-color:var(--white)}
+@media (max-width:760px){.nav a.link{display:none}}
+
+/* hero */
+.hero{background:var(--navy);color:var(--soft)}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center;padding-block:72px 56px}
+.hero h1{color:var(--white);font-weight:800;font-size:clamp(2.5rem,6.2vw,4.9rem);line-height:1.02;letter-spacing:-.025em;margin-top:18px}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero .lead{max-width:34rem;margin-top:24px;font-size:1.2rem;color:var(--soft)}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.hero-mark{justify-self:center;width:min(100%,340px)}
+.hero-mark svg{width:100%;height:auto;display:block;filter:drop-shadow(0 24px 40px rgba(0,0,0,.35))}
+.dash{animation:flow 1.4s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-17.67}}
+@media (prefers-reduced-motion:reduce){.dash{animation:none}html{scroll-behavior:auto}}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:48px 40px}.hero-mark{width:200px;justify-self:start;order:-1}}
+
+/* numbers strip */
+.numbers{background:var(--navy);padding-bottom:64px}
+.numbers ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.numbers li{border-top:4px solid var(--amber);padding-top:18px}
+.numbers b{display:block;font-family:var(--display);font-weight:700;font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.05;color:var(--white);font-variant-numeric:tabular-nums}
+.numbers span{display:block;margin-top:6px;color:var(--soft);font-size:.98rem}
+@media (max-width:760px){.numbers ul{grid-template-columns:1fr 1fr}}
+
+/* sections */
+section{padding-block:88px}
+.sec-head{display:grid;gap:12px;max-width:40rem;margin-bottom:40px}
+.sec-head h2{font-size:clamp(1.9rem,3.8vw,2.9rem);line-height:1.08;letter-spacing:-.02em;font-weight:700}
+.sec-head p{font-size:1.1rem}
+
+/* services */
+.services{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.panel{border-radius:24px;padding:40px;display:flex;flex-direction:column;gap:18px}
+.panel.dark{background:var(--navy);color:var(--soft)}
+.panel.dark h3{color:var(--white)}
+.panel.light{background:var(--white);border:1px solid var(--line)}
+.panel .tag{font-family:var(--display);font-weight:600;font-size:.8125rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-ink)}
+.panel.dark .tag{color:var(--amber)}
+.panel h3{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.1;font-weight:700}
+.panel ul{margin:4px 0 8px;padding:0;list-style:none;display:grid;gap:10px}
+.panel li{display:flex;gap:12px;align-items:baseline}
+.panel li::before{content:"";flex:none;width:18px;height:3px;background:var(--amber);transform:translateY(-4px);border-radius:2px}
+.panel .btn{align-self:flex-start;margin-top:auto}
+.panel.dark .btn{border-color:var(--soft);color:var(--white)}
+.panel.dark .btn:hover{background:var(--white);color:var(--navy);border-color:var(--white)}
+@media (max-width:860px){.services{grid-template-columns:1fr}.panel{padding:28px}}
+
+/* why */
+.why{background:var(--white);border-block:1px solid var(--line)}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.pillar{border-top:4px solid var(--navy);padding-top:20px;display:grid;gap:10px;align-content:start}
+.pillar .n{font-family:var(--display);font-weight:800;font-size:3rem;line-height:1;color:var(--amber-ink)}
+.pillar h3{font-size:1.4rem;font-weight:700}
+@media (max-width:860px){.pillars{grid-template-columns:1fr;gap:28px}}
+
+/* trip slip */
+.trip{background:var(--paper)}
+.trip-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+form{display:grid;gap:16px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:grid;gap:6px;font-weight:600;font-size:.92rem;color:var(--navy)}
+input,select,textarea{font:inherit;font-weight:400;color:var(--navy);background:var(--white);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--navy);outline:3px solid rgba(242,140,40,.45);outline-offset:0}
+textarea{min-height:92px;resize:vertical}
+.slip{background:var(--white);border:1.5px solid var(--navy);border-radius:6px;position:relative;padding:28px 28px 24px;box-shadow:8px 8px 0 var(--navy)}
+.slip::before,.slip::after{content:"";position:absolute;top:84px;width:22px;height:22px;background:var(--paper);border:1.5px solid var(--navy);border-radius:50%}
+.slip::before{left:-12px;clip-path:inset(0 0 0 50%)}
+.slip::after{right:-12px;clip-path:inset(0 50% 0 0)}
+.slip-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:30px;border-bottom:2px dashed var(--line)}
+.slip-head b{font-family:var(--display);font-weight:700;color:var(--navy);letter-spacing:.04em}
+.slip-head span{font-size:.85rem;color:var(--amber-ink);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.slip dl{display:grid;grid-template-columns:7.5rem 1fr;gap:12px 16px;margin:22px 0 0}
+.slip dt{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-ink);font-weight:700;padding-top:3px}
+.slip dd{margin:0;color:var(--navy);font-weight:500;overflow-wrap:anywhere;min-height:1.6em}
+.slip dd.empty{color:#8A96AB;font-weight:400}
+.slip-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.note{font-size:.88rem;color:#5A6A80;margin-top:14px}
+.status{min-height:1.4em;font-size:.9rem;color:var(--navy);font-weight:600;margin-top:8px}
+@media (max-width:900px){.trip-grid{grid-template-columns:1fr}.row2{grid-template-columns:1fr}}
+
+/* registrations */
+.regs{background:var(--navy);color:var(--soft)}
+.regs h2{color:var(--white)}
+.regs .eyebrow{color:var(--amber)}
+.reg-list{display:grid;border-top:1px solid #2A3E6E}
+.reg{display:grid;grid-template-columns:1.1fr 1.2fr 1.4fr;gap:16px;padding:22px 0;border-bottom:1px solid #2A3E6E;align-items:baseline}
+.reg b{font-family:var(--display);font-weight:600;color:var(--white)}
+.reg code{font-family:var(--display);font-weight:600;font-size:1.15rem;letter-spacing:.02em;color:var(--amber);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+@media (max-width:760px){.reg{grid-template-columns:1fr;gap:4px}}
+
+/* contact */
+.contact{background:var(--paper)}
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 40px}
+.c{border-top:4px solid var(--amber);padding-top:16px;display:grid;gap:6px}
+.c .eyebrow{font-size:.75rem}
+.c .v{font-family:var(--display);font-weight:600;font-size:1.3rem;color:var(--navy);overflow-wrap:anywhere}
+.c a{text-decoration:none}
+.c a:hover{color:var(--amber-ink)}
+@media (max-width:760px){.contact-grid{grid-template-columns:1fr}}
+footer{background:var(--navy);color:var(--soft);padding-block:28px;font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
+
+/* how + faq + mobile bar + reveal */
+.how{background:var(--white);border-block:1px solid var(--line)}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:st}
+.steps li{position:relative;padding-top:56px}
+.steps li::before{counter-increment:st;content:counter(st);position:absolute;top:0;left:0;width:44px;height:44px;border-radius:50%;background:var(--navy);color:var(--white);font-family:var(--display);font-weight:700;display:grid;place-items:center}
+.steps li::after{content:"";position:absolute;top:21px;left:56px;right:-12px;border-top:3px dashed var(--amber)}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:1.15rem;margin:0 0 6px}
+.steps p{margin:0}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}.steps li::after{display:none}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.faq-list{display:grid;gap:12px;max-width:52rem}
+.faq-list details{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:4px 22px}
+.faq-list summary{cursor:pointer;font-family:var(--display);font-weight:600;color:var(--navy);padding:16px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"+";color:var(--amber-ink);font-size:1.4rem;line-height:1}
+.faq-list details[open] summary::after{content:"\2212"}
+.faq-list p{margin:0 0 18px}
+.mbar{display:none}
+@media (max-width:760px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--navy);padding:10px 12px;gap:10px;box-shadow:0 -4px 16px rgba(0,0,0,.2)}
+  .mbar a{text-align:center;justify-content:center;padding:12px}
+  footer{padding-bottom:84px}
+  .nav .btn.solid{display:none}
+}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* special: road strip, live badge */
+.roadstrip{background:var(--navy);position:relative;height:96px;overflow:hidden;border-top:1px solid rgba(255,255,255,.08)}
+.roadstrip .lane{position:absolute;left:0;right:0;top:56px;height:0;border-top:4px dashed var(--amber);opacity:.9}
+.roadstrip .kerb{position:absolute;left:0;right:0;bottom:0;height:18px;background:#0A1530}
+.veh{position:absolute;bottom:22px;left:-200px;height:44px;animation:drive 18s linear infinite}
+.veh.v2{animation-duration:26s;animation-delay:-9s;height:40px}
+.veh.v3{animation-duration:22s;animation-delay:-15s;height:36px}
+@keyframes drive{to{transform:translateX(calc(100vw + 400px))}}
+@media (prefers-reduced-motion:reduce){.veh{animation:none;left:12%}.veh.v2{left:45%}.veh.v3{left:75%}}
+.live{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:8px 16px;border:1px solid rgba(201,212,232,.35);border-radius:999px;color:var(--soft);font-size:.92rem}
+.live i{width:10px;height:10px;border-radius:50%;background:#3DDC84;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
+@media (prefers-reduced-motion:reduce){.live i{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Katkhede Transport home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 524 128" role="img" aria-label="Katkhede Transport"><g><rect width="128" height="128" rx="30" fill="#0F1E3D"/><g transform="translate(-5 0)"><rect x="34" y="24" width="24" height="80" fill="#F4F7FB"/><polygon points="54,46 76,24 104,24 54,74" fill="#F4F7FB"/><polygon points="54,82 76,104 104,104 54,54" fill="#F4F7FB"/><path d="M46 32 V96" stroke="#F28C28" stroke-width="4" stroke-dasharray="11 6.67" fill="none"/><path d="M87 27 L65 49" stroke="#F28C28" stroke-width="4" stroke-dasharray="11 9.1" fill="none"/><path d="M87 101 L65 79" stroke="#F28C28" stroke-width="4" stroke-dasharray="11 9.1" fill="none"/></g></g><path d="M198.016 76.0 182.912 56.16V76.0H171.968V31.071999999999996H182.912V50.784L197.888 31.071999999999996H210.752L193.344 53.088L211.392 76.0Z M246.044 68.064H229.276L226.588 76.0H215.132L231.388 31.071999999999996H244.06L260.31600000000003 76.0H248.732ZM243.228 59.616 237.66 43.168 232.156 59.616Z M299.064 31.071999999999996V39.839999999999996H287.16V76.0H276.216V39.839999999999996H264.312V31.071999999999996Z M332.11600000000004 76.0 317.012 56.16V76.0H306.06800000000004V31.071999999999996H317.012V50.784L331.988 31.071999999999996H344.85200000000003L327.444 53.088L345.492 76.0Z M391.088 31.071999999999996V76.0H380.144V57.504000000000005H363.12V76.0H352.17600000000004V31.071999999999996H363.12V48.672H380.144V31.071999999999996Z M411.404 39.839999999999996V48.928H426.06V57.376000000000005H411.404V67.232H427.98V76.0H400.46000000000004V31.071999999999996H427.98V39.839999999999996Z M476.9680000000001 53.536Q476.9680000000001 60.128 474.05600000000004 65.24799999999999Q471.14400000000006 70.368 465.80000000000007 73.184Q460.456 76.0 453.41600000000005 76.0H436.58400000000006V31.071999999999996H453.41600000000005Q460.52000000000004 31.071999999999996 465.83200000000005 33.888Q471.14400000000006 36.704 474.05600000000004 41.792Q476.9680000000001 46.879999999999995 476.9680000000001 53.536ZM465.83200000000005 53.536Q465.83200000000005 47.328 462.3760000000001 43.872Q458.9200000000001 40.416 452.71200000000005 40.416H447.528V66.528H452.71200000000005Q458.9200000000001 66.528 462.3760000000001 63.136Q465.83200000000005 59.744 465.83200000000005 53.536Z M495.55600000000004 39.839999999999996V48.928H510.21200000000005V57.376000000000005H495.55600000000004V67.232H512.1320000000001V76.0H484.6120000000001V31.071999999999996H512.1320000000001V39.839999999999996Z" fill="#0F1E3D"/><path d="M184.672 92.53999999999999V95.144H179.492V112.0H176.3V95.144H171.092V92.53999999999999Z M207.0 112.0 202.52 104.216H200.084V112.0H196.892V92.53999999999999H203.612Q205.852 92.53999999999999 207.406 93.324Q208.96 94.108 209.73000000000002 95.424Q210.5 96.74 210.5 98.364Q210.5 100.268 209.394 101.822Q208.288 103.376 205.992 103.936L210.808 112.0ZM200.084 101.668H203.612Q205.404 101.668 206.314 100.772Q207.224 99.876 207.224 98.364Q207.224 96.852 206.328 95.998Q205.43200000000002 95.144 203.612 95.144H200.084Z M235.32 108.024H227.172L225.772 112.0H222.44L229.412 92.512H233.108L240.07999999999998 112.0H236.72ZM234.424 105.42 231.26 96.376 228.068 105.42Z M268.092 112.0H264.9L255.296 97.468V112.0H252.10399999999998V92.512H255.296L264.9 107.016V92.512H268.092Z M280.81600000000003 106.624H284.232Q284.344 107.884 285.226 108.696Q286.108 109.508 287.704 109.508Q289.356 109.508 290.28 108.71000000000001Q291.204 107.912 291.204 106.652Q291.204 105.672 290.63 105.056Q290.056 104.44 289.202 104.104Q288.348 103.768 286.836 103.376Q284.932 102.872 283.742 102.354Q282.552 101.836 281.712 100.744Q280.872 99.652 280.872 97.832Q280.872 96.152 281.712 94.892Q282.552 93.632 284.064 92.96000000000001Q285.576 92.288 287.564 92.288Q290.392 92.288 292.198 93.702Q294.004 95.116 294.2 97.58H290.672Q290.588 96.516 289.664 95.76Q288.74 95.004 287.228 95.004Q285.856 95.004 284.988 95.70400000000001Q284.12 96.404 284.12 97.72Q284.12 98.616 284.666 99.19Q285.212 99.764 286.052 100.1Q286.892 100.436 288.348 100.828Q290.28000000000003 101.36 291.49800000000005 101.892Q292.716 102.424 293.57000000000005 103.53Q294.42400000000004 104.636 294.42400000000004 106.484Q294.42400000000004 107.968 293.62600000000003 109.28399999999999Q292.82800000000003 110.6 291.302 111.398Q289.776 112.196 287.704 112.196Q285.744 112.196 284.17600000000004 111.50999999999999Q282.608 110.824 281.712 109.564Q280.81600000000003 108.304 280.81600000000003 106.624Z M313.924 104.104H310.39599999999996V112.0H307.204V92.53999999999999H313.924Q316.164 92.53999999999999 317.71799999999996 93.31Q319.272 94.08 320.04200000000003 95.396Q320.812 96.712 320.812 98.336Q320.812 99.82 320.11199999999997 101.136Q319.412 102.452 317.87199999999996 103.27799999999999Q316.332 104.104 313.924 104.104ZM317.536 98.336Q317.536 95.144 313.924 95.144H310.39599999999996V101.5H313.924Q315.74399999999997 101.5 316.64 100.674Q317.536 99.848 317.536 98.336Z M331.8 102.228Q331.8 99.372 333.13 97.104Q334.46000000000004 94.836 336.742 93.562Q339.024 92.288 341.74 92.288Q344.48400000000004 92.288 346.766 93.562Q349.048 94.836 350.36400000000003 97.104Q351.68 99.372 351.68 102.228Q351.68 105.084 350.36400000000003 107.366Q349.048 109.648 346.766 110.922Q344.48400000000004 112.196 341.74 112.196Q339.024 112.196 336.742 110.922Q334.46000000000004 109.648 333.13 107.366Q331.8 105.084 331.8 102.228ZM348.404 102.228Q348.404 100.072 347.55 98.44800000000001Q346.696 96.824 345.184 95.95599999999999Q343.672 95.088 341.74 95.088Q339.808 95.088 338.296 95.95599999999999Q336.784 96.824 335.93 98.44800000000001Q335.076 100.072 335.076 102.228Q335.076 104.384 335.93 106.02199999999999Q336.784 107.66 338.296 108.542Q339.808 109.424 341.74 109.424Q343.672 109.424 345.184 108.542Q346.696 107.66 347.55 106.02199999999999Q348.404 104.384 348.404 102.228Z M373.92400000000004 112.0 369.444 104.216H367.008V112.0H363.81600000000003V92.53999999999999H370.536Q372.776 92.53999999999999 374.33000000000004 93.324Q375.884 94.108 376.654 95.424Q377.42400000000004 96.74 377.42400000000004 98.364Q377.42400000000004 100.268 376.318 101.822Q375.212 103.376 372.916 103.936L377.732 112.0ZM367.008 101.668H370.536Q372.32800000000003 101.668 373.23800000000006 100.772Q374.148 99.876 374.148 98.364Q374.148 96.852 373.252 95.998Q372.356 95.144 370.536 95.144H367.008Z M403.08400000000006 92.53999999999999V95.144H397.90400000000005V112.0H394.71200000000005V95.144H389.504V92.53999999999999Z" fill="#B45309"/></svg>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="link" href="#services">Services</a>
+      <a class="link" href="#why">Why us</a>
+      <a class="link" href="#how">How it works</a>
+      <a class="link" href="#trip">Request a trip</a>
+      <a class="link" href="#contact">Contact</a>
+      <a class="btn solid" href="tel:+917057577122">Call 7057577122</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="hero on-dark">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Pimpri, Pune &nbsp;·&nbsp; Since 2023</p>
+      <h1>Moving people and goods across Pune, <em>reliably.</em></h1>
+      <p class="lead">Employee transportation and goods transportation, run from one dispatch desk. Call any time: the desk is open 24×7.</p>
+      <div class="live"><i></i>Dispatch desk open 24×7</div>
+      <div class="cta-row">
+        <a class="btn solid" href="#trip">Request a trip</a>
+        <a class="btn ghost-light" href="tel:+917057577122">7057577122</a>
+      </div>
+    </div>
+    <div class="hero-mark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Katkhede Transport logo: a K drawn as a road with an orange centre line"><rect width="128" height="128" rx="30" fill="#F4F7FB"/><g transform="translate(-5 0)"><rect x="34" y="24" width="24" height="80" fill="#0F1E3D"/><polygon points="54,46 76,24 104,24 54,74" fill="#0F1E3D"/><polygon points="54,82 76,104 104,104 54,54" fill="#0F1E3D"/><path class="dash" d="M46 32 V96" stroke="#F28C28" stroke-width="4" stroke-dasharray="11 6.67" fill="none"/><path class="dash" d="M87 27 L65 49" stroke="#F28C28" stroke-width="4" stroke-dasharray="11 9.1" fill="none"/><path class="dash" d="M87 101 L65 79" stroke="#F28C28" stroke-width="4" stroke-dasharray="11 9.1" fill="none"/></g></svg>
+    </div>
+  </div>
+</div>
+
+<div class="numbers on-dark">
+  <div class="wrap">
+    <ul>
+      <li><b>320+</b><span>Vehicles in our network</span></li>
+      <li><b>24×7</b><span>Dispatch &amp; support desk</span></li>
+      <li><b>10+</b><span>Team members</span></li>
+      <li><b>4+</b><span>Cities served for clients</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="roadstrip" aria-hidden="true"><div class="lane"></div><div class="kerb"></div><svg class="veh" viewBox="0 0 120 44" aria-hidden="true"><rect x="2" y="4" width="112" height="32" rx="8" fill="#F4F7FB"/><rect x="10" y="10" width="14" height="12" rx="2" fill="#0F1E3D"/><rect x="30" y="10" width="14" height="12" rx="2" fill="#0F1E3D"/><rect x="50" y="10" width="14" height="12" rx="2" fill="#0F1E3D"/><rect x="70" y="10" width="14" height="12" rx="2" fill="#0F1E3D"/><rect x="92" y="10" width="18" height="16" rx="3" fill="#16295A"/><rect x="2" y="28" width="112" height="4" fill="#F28C28"/><circle cx="28" cy="36" r="6" fill="#0A1530" stroke="#F4F7FB" stroke-width="2"/><circle cx="92" cy="36" r="6" fill="#0A1530" stroke="#F4F7FB" stroke-width="2"/></svg><svg class="veh v2" viewBox="0 0 130 40" aria-hidden="true"><rect x="2" y="2" width="82" height="28" rx="3" fill="#F28C28"/><path d="M88 8h20l14 12v10H88z" fill="#F4F7FB"/><rect x="104" y="12" width="12" height="8" fill="#0F1E3D"/><circle cx="24" cy="32" r="6" fill="#0A1530" stroke="#F4F7FB" stroke-width="2"/><circle cx="64" cy="32" r="6" fill="#0A1530" stroke="#F4F7FB" stroke-width="2"/><circle cx="108" cy="32" r="6" fill="#0A1530" stroke="#F4F7FB" stroke-width="2"/></svg><svg class="veh v3" viewBox="0 0 120 44" aria-hidden="true"><rect x="2" y="4" width="112" height="32" rx="8" fill="#F4F7FB"/><rect x="10" y="10" width="14" height="12" rx="2" fill="#0F1E3D"/><rect x="30" y="10" width="14" height="12" rx="2" fill="#0F1E3D"/><rect x="50" y="10" width="14" height="12" rx="2" fill="#0F1E3D"/><rect x="70" y="10" width="14" height="12" rx="2" fill="#0F1E3D"/><rect x="92" y="10" width="18" height="16" rx="3" fill="#16295A"/><rect x="2" y="28" width="112" height="4" fill="#F28C28"/><circle cx="28" cy="36" r="6" fill="#0A1530" stroke="#F4F7FB" stroke-width="2"/><circle cx="92" cy="36" r="6" fill="#0A1530" stroke="#F4F7FB" stroke-width="2"/></svg></div>
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">What we do</p>
+      <h2>Two services, one reliable partner</h2>
+      <p>Safe, punctual commutes for your staff and motorised road freight for your goods.</p>
+    </div>
+    <div class="services">
+      <article class="panel dark">
+        <p class="tag">Service 01</p>
+        <h3>Employee Transportation</h3>
+        <p>Commutes for the people who keep your business running.</p>
+        <ul>
+          <li>Daily pick-up and drop for company staff</li>
+          <li>Offices, factories and other establishments</li>
+          <li>Routes planned around shift timings</li>
+        </ul>
+        <a class="btn solid" href="#trip" data-service="Employee transportation">Ask about this service</a>
+      </article>
+      <article class="panel light">
+        <p class="tag">Service 02</p>
+        <h3>Goods Transportation</h3>
+        <p>Motorised road freight for businesses and individuals who need goods moved.</p>
+        <ul>
+          <li>Motorised road freight transport</li>
+          <li>Local and regional deliveries</li>
+          <li>Loads moved on your timeline</li>
+        </ul>
+        <a class="btn" href="#trip" data-service="Goods transportation">Ask about this service</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="why">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Why choose us</p>
+      <h2>Dependable transport that runs to your schedule</h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar"><span class="n">01</span><h3>Registered and compliant</h3><p>GST, Udyam and Professional Tax registrations are in place and listed below.</p></div>
+      <div class="pillar"><span class="n">02</span><h3>Local to Pimpri, Pune</h3><p>Based in Pimpri and serving clients in 4+ cities through a network of 320+ vehicles.</p></div>
+      <div class="pillar"><span class="n">03</span><h3>Direct line to the owner</h3><p>One point of contact, with services shaped around your schedule.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="how">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">How it works</p>
+      <h2>From first call to first trip, in four steps</h2>
+    </div>
+    <ol class="steps rv">
+      <li><h3>Tell us what you need</h3><p>Call, or fill in the request form below with your route, timing and numbers.</p></li>
+      <li><h3>We plan the route</h3><p>Pick-up points, shift timings or goods details are worked out with you.</p></li>
+      <li><h3>Vehicle assigned</h3><p>A suitable vehicle from our network is arranged for the job.</p></li>
+      <li><h3>On the road, supported</h3><p>Our dispatch and support desk is available 24×7 while you travel.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="trip" class="trip">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Request a trip</p>
+      <h2>Tell us the route and we will plan the rest</h2>
+      <p>Fill in what you know. The slip on the right fills in as you type, then opens in WhatsApp with your message ready to send.</p>
+    </div>
+    <div class="trip-grid">
+      <form id="tripForm" autocomplete="on">
+        <div class="row2">
+          <label for="f-name">Your name<input id="f-name" name="name" type="text" placeholder="e.g. Anil Patil"></label>
+          <label for="f-phone">Phone<input id="f-phone" name="phone" type="tel" inputmode="tel" placeholder="Your mobile number"></label>
+        </div>
+        <label for="f-service">Service
+          <select id="f-service" name="service">
+            <option>Employee transportation</option>
+            <option>Goods transportation</option>
+          </select>
+        </label>
+        <div class="row2">
+          <label for="f-from">From<input id="f-from" name="from" type="text" placeholder="Pick-up area or address"></label>
+          <label for="f-to">To<input id="f-to" name="to" type="text" placeholder="Drop area or address"></label>
+        </div>
+        <label for="f-when">When<input id="f-when" name="when" type="text" placeholder="e.g. Daily, 8:30 am shift, or 25 Nov"></label>
+        <label for="f-notes">Details<textarea id="f-notes" name="notes" placeholder="Number of staff, type of goods, weight, anything else"></textarea></label>
+      </form>
+
+      <div>
+        <div class="slip" aria-live="polite">
+          <div class="slip-head"><b>TRIP SLIP</b><span>Katkhede Transport</span></div>
+          <dl>
+            <dt>Name</dt><dd id="s-name" class="empty">Not filled</dd>
+            <dt>Phone</dt><dd id="s-phone" class="empty">Not filled</dd>
+            <dt>Service</dt><dd id="s-service">Employee transportation</dd>
+            <dt>From</dt><dd id="s-from" class="empty">Not filled</dd>
+            <dt>To</dt><dd id="s-to" class="empty">Not filled</dd>
+            <dt>When</dt><dd id="s-when" class="empty">Not filled</dd>
+            <dt>Details</dt><dd id="s-notes" class="empty">Not filled</dd>
+          </dl>
+          <div class="slip-actions">
+            <a id="wa" class="btn solid" href="https://wa.me/917057577122" target="_blank" rel="noopener">Open in WhatsApp</a>
+            <button id="copy" class="btn" type="button">Copy message</button>
+          </div>
+          <p id="status" class="status" role="status"></p>
+        </div>
+        <p class="note">WhatsApp opens with your message ready. Nothing is sent until you press send there. You can also call 7057577122 or write to katkhedetransports@gmail.com.</p>
+        <label for="out" style="margin-top:16px">Message text<textarea id="out" readonly rows="5"></textarea></label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="registrations" class="regs on-dark">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Compliance</p>
+      <h2>Fully registered and compliant</h2>
+    </div>
+    <div class="reg-list">
+      <div class="reg"><b>GST registration</b><code>27JJMPK5879R1ZP</code><span>Regular, effective 31 May 2023</span></div>
+      <div class="reg"><b>MSME (Udyam)</b><code>UDYAM-MH-26-0452578</code><span>Micro enterprise, registered 23 May 2023</span></div>
+      <div class="reg"><b>Professional Tax (PTRC)</b><code>27932155407P</code><span>Employer registration, effective 23 May 2023</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Questions</p>
+      <h2>Quick answers</h2>
+    </div>
+    <div class="faq-list rv">
+      <details><summary>What do you transport?</summary><p>We run employee transportation (daily pick-up and drop for company staff) and goods transportation by road for businesses and individuals.</p></details>
+      <details><summary>Where do you operate?</summary><p>We are based in Pimpri, Pune and serve clients in 4+ cities. Call us with your route and we will confirm.</p></details>
+      <details><summary>How do I get a quote?</summary><p>Use the request form on this page or call 7057577122. Share the route, timing and number of people or type of goods.</p></details>
+      <details><summary>Can you handle regular shift-based routes?</summary><p>Yes. Employee routes are planned around your shift timings, so pick-ups and drops follow your schedule.</p></details>
+      <details><summary>Is the business registered?</summary><p>Yes. Our GST, Udyam and Professional Tax registrations are listed on this page.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Contact</p>
+      <h2>Give us the opportunity to serve you</h2>
+      <p>We will stand up to your expectations.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="c"><span class="eyebrow">Phone</span><span class="v"><a href="tel:+917057577122">7057577122</a></span></div>
+      <div class="c"><span class="eyebrow">Email</span><span class="v"><a href="mailto:katkhedetransports@gmail.com">katkhedetransports@gmail.com</a></span></div>
+      <div class="c"><span class="eyebrow">Website</span><span class="v">katkhedetransports.com</span></div>
+      <div class="c"><span class="eyebrow">Address</span><span class="v">P/B 4/5, Ajmera Complex, Ajmera Road, Near Ajmera School, Pimpri, Pune 411018</span><a class="eyebrow" style="color:var(--amber-ink)" href="https://www.google.com/maps/search/?api=1&amp;query=Ajmera+Complex+Ajmera+Road+Pimpri+Pune+411018" target="_blank" rel="noopener">Open in Google Maps</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Katkhede Transport · Proprietor: Rushikesh Dhananjay Katkhede</span>
+    <span>GSTIN 27JJMPK5879R1ZP</span>
+  </div>
+</footer>
+
+<div class="mbar"><a class="btn solid" href="tel:+917057577122">Call 7057577122</a><a class="btn ghost-light" href="https://wa.me/917057577122" target="_blank" rel="noopener">WhatsApp</a></div>
+<script>
+(function(){
+  try{var rm=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var nums=document.querySelectorAll(".numbers b");
+  nums.forEach(function(b){var m=b.textContent.match(/^(\d+)(\+?)$/);if(!m||rm)return;var end=+m[1],suf=m[2],t0=null;
+    function f(t){if(!t0)t0=t;var k=Math.min((t-t0)/1400,1),e=1-Math.pow(1-k,3);b.textContent=Math.round(end*e)+suf;if(k<1)requestAnimationFrame(f)}
+    b.textContent="0"+suf;
+    var o=new IntersectionObserver(function(en){if(en[0].isIntersecting){requestAnimationFrame(f);o.disconnect()}},{threshold:.4});o.observe(b)})}catch(e){}
+  try{var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.12});document.querySelectorAll(".rv").forEach(function(el){io.observe(el)})}catch(e){document.querySelectorAll(".rv").forEach(function(el){el.classList.add("in")})}
+  var NUM='917057577122';
+  var ids=['name','phone','service','from','to','when','notes'];
+  var el={};
+  ids.forEach(function(k){el[k]={in:document.getElementById('f-'+k),out:document.getElementById('s-'+k)};});
+  var out=document.getElementById('out'),wa=document.getElementById('wa'),status=document.getElementById('status');
+  function val(k){return el[k].in.value.trim();}
+  function build(){
+    var L=['Hello Katkhede Transport, I would like a quote.'];
+    var map=[['Service','service'],['From','from'],['To','to'],['When','when'],['Details','notes'],['Name','name'],['Phone','phone']];
+    map.forEach(function(p){var v=val(p[1]);if(v)L.push(p[0]+': '+v);});
+    return L.join('\n');
+  }
+  function render(){
+    ids.forEach(function(k){
+      var v=val(k),o=el[k].out;
+      if(k==='service'){o.textContent=v;return;}
+      o.textContent=v||'Not filled';
+      o.className=v?'':'empty';
+    });
+    var m=build();
+    out.value=m;
+    wa.href='https://wa.me/'+NUM+'?text='+encodeURIComponent(m);
+  }
+  document.getElementById('tripForm').addEventListener('input',render);
+  document.getElementById('tripForm').addEventListener('submit',function(e){e.preventDefault();});
+  document.querySelectorAll('[data-service]').forEach(function(a){
+    a.addEventListener('click',function(){el.service.in.value=a.getAttribute('data-service');render();});
+  });
+  document.getElementById('copy').addEventListener('click',function(){
+    out.focus();out.select();
+    var done=function(ok){status.textContent=ok?'Message copied.':'Select the message text below and copy it.';};
+    try{
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(out.value).then(function(){done(true);},function(){done(false);});}
+      else{done(document.execCommand&&document.execCommand('copy'));}
+    }catch(err){done(false);}
+  });
+  render();
+})();
+</script>
+</body>
+</html>
